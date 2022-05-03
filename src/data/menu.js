@@ -20,6 +20,11 @@ export default {
       icon: 'si si-speedometer'
     },
     {
+      name: 'Categories',
+      to: '/admin/categories',
+      icon: 'si si-speedometer'
+    },
+    {
       name: 'Homepage',
       to: '/admin/homepage',
       icon: 'si si-speedometer'

@@ -12,6 +12,7 @@ import LayoutBackend from "@/layouts/variations/Backend";
 import Orders from "@/views/orders/Orders";
 import Products from "@/views/products/Products";
 import EmptyComponent from "@/layouts/EmptyComponent";
+import Categories from "@/views/categories/Categories";
 
 // tabs
 
@@ -57,7 +58,13 @@ export default new Router({
               path: 'products',
               name: 'Products',
               component: Products
-            }
+            },
+            {
+              path: 'categories',
+              name: 'Categories',
+              component: Categories
+            },
+
           ]
         }
       ]
