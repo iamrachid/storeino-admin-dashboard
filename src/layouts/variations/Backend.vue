@@ -6,7 +6,7 @@
 import BaseLayout from '../Base'
 
 export default {
-  name: 'LayoutBackend',
+  name: 'Layout',
   components: {
     BaseLayout
   },

@@ -6,7 +6,22 @@ export default {
   'main': [
     {
       name: 'Dashboard',
-      to: '/backend/dashboard',
+      to: '/admin/dashboard',
+      icon: 'si si-speedometer'
+    },
+    {
+      name: 'Orders',
+      to: '/admin/orders',
+      icon: 'si si-bag'
+    },
+    {
+      name: 'Products',
+      to: '/admin/products',
+      icon: 'si si-speedometer'
+    },
+    {
+      name: 'Homepage',
+      to: '/admin/homepage',
       icon: 'si si-speedometer'
     },
     {
@@ -14,170 +29,170 @@ export default {
       heading: true
     },
     {
-      name: 'Blocks',
+      name: 'orders',
       icon: 'si si-energy',
-      subActivePaths: '/backend/blocks',
+      subActivePaths: '/orders',
       sub: [
         {
           name: 'Styles',
-          to: '/backend/blocks/styles'
+          to: '/admin/blocks/styles'
         },
         {
           name: 'Options',
-          to: '/backend/blocks/options'
+          to: '/admin/blocks/options'
         },
         {
           name: 'Forms',
-          to: '/backend/blocks/forms'
+          to: '/admin/blocks/forms'
         },
         {
           name: 'Themed',
-          to: '/backend/blocks/themed'
+          to: '/admin/blocks/themed'
         },
         {
           name: 'API',
-          to: '/backend/blocks/api'
+          to: '/admin/blocks/api'
         }
       ]
     },
     {
       name: 'Elements',
       icon: 'si si-badge',
-      subActivePaths: '/backend/elements',
+      subActivePaths: '/admin/elements',
       sub: [
         {
           name: 'Grid',
-          to: '/backend/elements/grid'
+          to: '/admin/elements/grid'
         },
         {
           name: 'Typography',
-          to: '/backend/elements/typography'
+          to: '/admin/elements/typography'
         },
         {
           name: 'Icons',
-          to: '/backend/elements/icons'
+          to: '/admin/elements/icons'
         },
         {
           name: 'Buttons',
-          to: '/backend/elements/buttons'
+          to: '/admin/elements/buttons'
         },
         {
           name: 'Button Groups',
-          to: '/backend/elements/button-groups'
+          to: '/admin/elements/button-groups'
         },
         {
           name: 'Dropdowns',
-          to: '/backend/elements/dropdowns'
+          to: '/admin/elements/dropdowns'
         },
         {
           name: 'Tabs',
-          to: '/backend/elements/tabs'
+          to: '/admin/elements/tabs'
         },
         {
           name: 'Navigation',
-          to: '/backend/elements/navigation'
+          to: '/admin/elements/navigation'
         },
         {
           name: 'Horizontal Navigation',
-          to: '/backend/elements/navigation-horizontal'
+          to: '/admin/elements/navigation-horizontal'
         },
         {
           name: 'Progress',
-          to: '/backend/elements/progress'
+          to: '/admin/elements/progress'
         },
         {
           name: 'Alerts',
-          to: '/backend/elements/alerts'
+          to: '/admin/elements/alerts'
         },
         {
           name: 'Tooltips',
-          to: '/backend/elements/tooltips'
+          to: '/admin/elements/tooltips'
         },
         {
           name: 'Popovers',
-          to: '/backend/elements/popovers'
+          to: '/admin/elements/popovers'
         },
         {
           name: 'Modals',
-          to: '/backend/elements/modals'
+          to: '/admin/elements/modals'
         },
         {
           name: 'Images',
-          to: '/backend/elements/images'
+          to: '/admin/elements/images'
         },
         {
           name: 'Timeline',
-          to: '/backend/elements/timeline'
+          to: '/admin/elements/timeline'
         },
         {
           name: 'Ribbons',
-          to: '/backend/elements/ribbons'
+          to: '/admin/elements/ribbons'
         },
         {
           name: 'Animations',
-          to: '/backend/elements/animations'
+          to: '/admin/elements/animations'
         },
         {
           name: 'Color Themes',
-          to: '/backend/elements/color-themes'
+          to: '/admin/elements/color-themes'
         }
       ]
     },
     {
       name: 'Tables',
       icon: 'si si-grid',
-      subActivePaths: '/backend/tables',
+      subActivePaths: '/admin/tables',
       sub: [
         {
           name: 'Styles',
-          to: '/backend/tables/styles'
+          to: '/admin/tables/styles'
         },
         {
           name: 'Responsive',
-          to: '/backend/tables/responsive'
+          to: '/admin/tables/responsive'
         },
         {
           name: 'Helpers',
-          to: '/backend/tables/helpers'
+          to: '/admin/tables/helpers'
         },
         {
           name: 'Pricing',
-          to: '/backend/tables/pricing'
+          to: '/admin/tables/pricing'
         }
       ]
     },
     {
       name: 'Forms',
       icon: 'si si-note',
-      subActivePaths: '/backend/forms',
+      subActivePaths: '/admin/forms',
       sub: [
         {
           name: 'Elements',
-          to: '/backend/forms/elements'
+          to: '/admin/forms/elements'
         },
         {
           name: 'Custom Controls',
-          to: '/backend/forms/custom-controls'
+          to: '/admin/forms/custom-controls'
         },
         {
           name: 'Layouts',
-          to: '/backend/forms/layouts'
+          to: '/admin/forms/layouts'
         },
         {
           name: 'Input Groups',
-          to: '/backend/forms/input-groups'
+          to: '/admin/forms/input-groups'
         },
         {
           name: 'Plugins',
-          to: '/backend/forms/plugins'
+          to: '/admin/forms/plugins'
         },
         {
           name: 'Editors',
-          to: '/backend/forms/editors'
+          to: '/admin/forms/editors'
         },
         {
           name: 'Validation',
-          to: '/backend/forms/validation'
+          to: '/admin/forms/validation'
         }
       ]
     },
@@ -188,86 +203,86 @@ export default {
     {
       name: 'Plugins',
       icon: 'si si-wrench',
-      subActivePaths: '/backend/plugins',
+      subActivePaths: '/admin/plugins',
       sub: [
         {
           name: 'Image Cropper',
-          to: '/backend/plugins/image-cropper'
+          to: '/admin/plugins/image-cropper'
         },
         {
           name: 'Charts',
-          to: '/backend/plugins/charts'
+          to: '/admin/plugins/charts'
         },
         {
           name: 'Calendar',
-          to: '/backend/plugins/calendar'
+          to: '/admin/plugins/calendar'
         },
         {
           name: 'Carousel',
-          to: '/backend/plugins/carousel'
+          to: '/admin/plugins/carousel'
         },
         {
           name: 'Syntax Highlighting',
-          to: '/backend/plugins/syntax-highlighting'
+          to: '/admin/plugins/syntax-highlighting'
         },
         {
           name: 'Rating',
-          to: '/backend/plugins/rating'
+          to: '/admin/plugins/rating'
         },
         {
           name: 'Dialogs',
-          to: '/backend/plugins/dialogs'
+          to: '/admin/plugins/dialogs'
         },
         {
           name: 'Notifications',
-          to: '/backend/plugins/notifications'
+          to: '/admin/plugins/notifications'
         },
         {
           name: 'Gallery',
-          to: '/backend/plugins/gallery'
+          to: '/admin/plugins/gallery'
         }
       ]
     },
     {
       name: 'Layout',
       icon: 'si si-magic-wand',
-      subActivePaths: '/backend/layout',
+      subActivePaths: '/admin/layout',
       sub: [
         {
           name: 'Page',
-          subActivePaths: '/backend/layout/page',
+          subActivePaths: '/admin/layout/page',
           sub: [
             {
               name: 'Default',
-              to: '/backend/layout/page/default'
+              to: '/admin/layout/page/default'
             },
             {
               name: 'Flipped',
-              to: '/backend/layout/page/flipped'
+              to: '/admin/layout/page/flipped'
             }
           ]
         },
         {
           name: 'Main Content',
-          subActivePaths: '/backend/layout/main-content',
+          subActivePaths: '/admin/layout/main-content',
           sub: [
             {
               name: 'Full Width',
-              to: '/backend/layout/main-content/full-width'
+              to: '/admin/layout/main-content/full-width'
             },
             {
               name: 'Narrow',
-              to: '/backend/layout/main-content/narrow'
+              to: '/admin/layout/main-content/narrow'
             },
             {
               name: 'Boxed',
-              to: '/backend/layout/main-content/boxed'
+              to: '/admin/layout/main-content/boxed'
             }
           ]
         },
         {
           name: 'Header',
-          subActivePaths: '/backend/layout/header',
+          subActivePaths: '/admin/layout/header',
           sub: [
             {
               name: 'Fixed',
@@ -275,11 +290,11 @@ export default {
             },
             {
               name: 'Light',
-              to: '/backend/layout/header/fixed-light'
+              to: '/admin/layout/header/fixed-light'
             },
             {
               name: 'Dark',
-              to: '/backend/layout/header/fixed-dark'
+              to: '/admin/layout/header/fixed-dark'
             },
             {
               name: 'Static',
@@ -287,61 +302,61 @@ export default {
             },
             {
               name: 'Light',
-              to: '/backend/layout/header/static-light'
+              to: '/admin/layout/header/static-light'
             },
             {
               name: 'Dark',
-              to: '/backend/layout/header/static-dark'
+              to: '/admin/layout/header/static-dark'
             }
           ]
         },
         {
           name: 'Sidebar',
-          subActivePaths: '/backend/layout/sidebar',
+          subActivePaths: '/admin/layout/sidebar',
           sub: [
             {
               name: 'Mini',
-              to: '/backend/layout/sidebar/mini'
+              to: '/admin/layout/sidebar/mini'
             },
             {
               name: 'Light',
-              to: '/backend/layout/sidebar/light'
+              to: '/admin/layout/sidebar/light'
             },
             {
               name: 'Dark',
-              to: '/backend/layout/sidebar/dark'
+              to: '/admin/layout/sidebar/dark'
             },
             {
               name: 'Hidden',
-              to: '/backend/layout/sidebar/hidden'
+              to: '/admin/layout/sidebar/hidden'
             }
           ]
         },
         {
           name: 'Side Overlay',
-          subActivePaths: '/backend/layout/side-overlay',
+          subActivePaths: '/admin/layout/side-overlay',
           sub: [
             {
               name: 'Visible',
-              to: '/backend/layout/side-overlay/visible'
+              to: '/admin/layout/side-overlay/visible'
             },
             {
               name: 'Hover Mode',
-              to: '/backend/layout/side-overlay/hover-mode'
+              to: '/admin/layout/side-overlay/hover-mode'
             },
             {
               name: 'No Page Overlay',
-              to: '/backend/layout/side-overlay/no-page-overlay'
+              to: '/admin/layout/side-overlay/no-page-overlay'
             }
           ]
         },
         {
           name: 'Loaders',
-          to: '/backend/layout/loaders'
+          to: '/admin/layout/loaders'
         },
         {
           name: 'API',
-          to: '/backend/layout/api'
+          to: '/admin/layout/api'
         }
       ]
     },
@@ -418,31 +433,31 @@ export default {
     {
       name: 'Generic',
       icon: 'si si-layers',
-      subActivePaths: '/backend/pages/generic',
+      subActivePaths: '/admin/pages/generic',
       sub: [
         {
           name: 'Blank',
-          to: '/backend/pages/generic/blank'
+          to: '/admin/pages/generic/blank'
         },
         {
           name: 'Blank (Block)',
-          to: '/backend/pages/generic/blank-block'
+          to: '/admin/pages/generic/blank-block'
         },
         {
           name: 'Search',
-          to: '/backend/pages/generic/search'
+          to: '/admin/pages/generic/search'
         },
         {
           name: 'Profile',
-          to: '/backend/pages/generic/profile'
+          to: '/admin/pages/generic/profile'
         },
         {
           name: 'Invoice',
-          to: '/backend/pages/generic/invoice'
+          to: '/admin/pages/generic/invoice'
         },
         {
           name: 'FAQ',
-          to: '/backend/pages/generic/faq'
+          to: '/admin/pages/generic/faq'
         },
         {
           name: 'Maintenance',
@@ -461,11 +476,11 @@ export default {
     {
       name: 'Authentication',
       icon: 'si si-lock',
-      subActivePaths: '/backend/pages/auth',
+      subActivePaths: '/admin/pages/auth',
       sub: [
         {
           name: 'All',
-          to: '/backend/pages/auth/all'
+          to: '/admin/pages/auth/all'
         },
         {
           name: 'Sign In',
@@ -504,11 +519,11 @@ export default {
     {
       name: 'Error Pages',
       icon: 'si si-fire',
-      subActivePaths: '/backend/pages/errors',
+      subActivePaths: '/admin/pages/errors',
       sub: [
         {
           name: 'All',
-          to: '/backend/pages/errors/all'
+          to: '/admin/pages/errors/all'
         },
         {
           name: '400',

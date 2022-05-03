@@ -92,7 +92,6 @@ export default {
     },
     linkClicked (e, submenu) {
       let windowW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
-
       if (submenu) {
         // Get window width
         let el = e.target.closest('li')
@@ -104,7 +103,7 @@ export default {
             el.classList.remove('open')
           } else {
             // .. else if submenu is closed, close all other (same level) submenus first before open it
-            el.closest('ul').children.forEach(element => {
+            Array.from(el.closest('ul').children).forEach(element => {
               element.classList.remove('open')
             })
 

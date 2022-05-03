@@ -4,9 +4,9 @@
 
 // Vue, Vue Router, App and Vuex store
 import Vue from 'vue'
-import router from './router'
 // You can use the following starter router instead of the default one as a clean starting point
-// import router from './router/starter'
+// import router from './router/index.old'
+import router from './router'
 import App from './App.vue'
 import store from './store'
 

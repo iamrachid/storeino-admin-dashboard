@@ -219,7 +219,7 @@
       <!-- END Header Search -->
 
       <!-- Header Loader -->
-      <div id="page-header-loader" class="overlay-header bg-white" :class="{ 'show': this.$store.state.settings.headerLoader }">
+      <div id="page-header-loader" class="overlay-header bg-white" :class="{ 'show': $store.state.settings.headerLoader }">
         <div class="content-header">
           <div class="w-100 text-center">
             <i class="fa fa-fw fa-circle-notch fa-spin"></i>
