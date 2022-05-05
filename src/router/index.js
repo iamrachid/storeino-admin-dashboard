@@ -13,6 +13,8 @@ import Orders from "@/views/orders/Orders";
 import Products from "@/views/products/Products";
 import EmptyComponent from "@/layouts/EmptyComponent";
 import Categories from "@/views/categories/Categories";
+import CategoryAdd from "@/views/categories/CategoryAdd";
+import CategoryEdit from "@/views/categories/CategoryEdit";
 
 // tabs
 
@@ -62,7 +64,21 @@ export default new Router({
             {
               path: 'categories',
               name: 'Categories',
-              component: Categories
+              component: EmptyComponent,
+              children: [
+                {
+                  path: '/',
+                  component: Categories,
+                },
+                {
+                  path: 'add',
+                  component: CategoryAdd
+                },
+                {
+                  path: ':slug',
+                  component: CategoryEdit
+                }
+              ]
             },
 
           ]

@@ -2,9 +2,10 @@
 <div class="content content-narrow">
   <base-block title="Categories Products" header-bg content-full>
     <template #options>
-      <button type="button" class="btn-block-option">
-        <i class="si si-settings"></i>
-      </button>
+      <a href="categories/add" class="btn btn-primary">
+        Add new Category
+        <i class="si si-plus"></i>
+      </a>
     </template>
     <b-table-simple striped hover borderless class="table-vcenter font-size-sm mb-0">
       <b-thead>
@@ -19,7 +20,7 @@
         </b-tr>
       </b-thead>
       <b-tbody>
-        <category-row v-for="item in categories" :key="item._id" :category="item"/>
+        <category-row v-for="item in categories" :key="item._id" :category="item" v-on:deleteCat="deleteCat"/>
       </b-tbody>
       <b-tfoot>
         <tr>
@@ -52,12 +53,11 @@ export default {
   },
   methods: {
     click(page){
-      console.log(this.categories[0]._id)
+      console.log(page)
+    },
+    deleteCat(slug){
+      console.log(slug)
     }
   }
 }
 </script>
-
-<style scoped>
-
-</style>
