@@ -23,7 +23,7 @@ export default new Vuex.Store({
   state: {
     // App vital details
     app: {
-      name: 'OneUI - Vue Edition',
+      name: 'Storeino Marketplace - Admin',
       version: process.env.PACKAGE_VERSION,
       copyright: helpers.getCurrentYear()
     },
@@ -76,7 +76,7 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    // Sets the layout, useful for setting different layouts (under layouts/variations/) 
+    // Sets the layout, useful for setting different layouts (under layouts/variations/)
     setLayout (state, payload) {
       state.layout.header = payload.header
       state.layout.sidebar = payload.sidebar

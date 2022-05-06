@@ -21,7 +21,6 @@ import BasePageHeading from '@/components/BasePageHeading'
 import BaseNavigation from '@/components/BaseNavigation'
 
 // Custom directives
-import clickRipple from '@/directives/clickRipple'
 import toggleClass from '@/directives/toggleClass'
 
 // Register global plugins
@@ -35,7 +34,6 @@ Vue.component(BasePageHeading.name, BasePageHeading)
 Vue.component(BaseNavigation.name, BaseNavigation)
 
 // Register global directives
-Vue.directive('click-ripple', clickRipple)
 Vue.directive('toggle-class', toggleClass)
 
 // Disable tip shown in dev console when in development mode

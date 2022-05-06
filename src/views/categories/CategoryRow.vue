@@ -10,7 +10,7 @@
       {{ category.name }}
     </b-td>
     <b-td>
-      <a class="font-w600" href="javascript:void(0)">{{ category.slug }}</a>
+      <a class="font-w600" href="javascript:void(0)">{{ category.slug.replaceAll(':', ' > ',) }}</a>
     </b-td>
     <b-td class="text-right">
       {{ category.level }}

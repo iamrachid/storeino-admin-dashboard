@@ -13,7 +13,7 @@
       {{ product.createdAt }}
     </b-td>
     <b-td class="text-right">
-      {{ product.price.salePrice }} MAD
+      {{ price }} MAD
     </b-td>
     <b-td class="text-center">
       <a href="javascript:void(0)" v-b-tooltip.hover.left.nofade="'View'" v-b-tooltip:>
@@ -31,7 +31,17 @@ export default {
   props: {
     product: {}
   },
-  computed:{
+  computed: {
+    price() {
+      if (this.product.type === 'simple')
+        return this.product.price.salePrice;
+      else {
+        const min = this.product.variants.reduce((acc, cur) => (acc < cur.price.salePrice) ? acc : cur.price.salePrice);
+        const max = this.product.variants.reduce((acc, cur) => (acc > cur.price.salePrice) ? acc : cur.price.salePrice);
+        console.log(min,max)
+        return (min === max) ? min : min + '-' + max;
+      }
+    },
     stateVariant(){
       switch (this.product.state){
         case 'PENDING': return 'warning';

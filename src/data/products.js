@@ -758,7 +758,7 @@ const products = [
         },
         "price": {
           "buyingPrice": 100,
-          "salePrice": 400,
+          "salePrice": 450,
           "comparePrice": 500
         },
         "quantity": {
@@ -914,7 +914,7 @@ const products = [
         },
         "price": {
           "buyingPrice": 100,
-          "salePrice": 400,
+          "salePrice": 450,
           "comparePrice": 500
         },
         "quantity": {
