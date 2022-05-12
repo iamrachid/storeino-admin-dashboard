@@ -6,11 +6,6 @@
 
     <!-- Page Content -->
     <div class="content">
-      <!-- Hero Banner -->
-      <base-block title="Menu" content-full>
-        <banner-form :banner="banner"/>
-      </base-block>
-      <!-- END Hero Banner -->
 
       <!-- Hero Slider -->
       <base-block title="Hero Slider" content-full>
