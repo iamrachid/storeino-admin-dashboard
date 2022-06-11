@@ -71,7 +71,7 @@
             <b-tfoot>
               <tr>
                 <td colspan="7">
-              <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="right" prev-text="Prev" next-text="Next" @change="click"></b-pagination>
+              <b-pagination v-model="paginate.currentPage" :total-rows="paginate.total" :per-page="paginate.perPage" align="right" prev-text="Prev" next-text="Next" @change="click"></b-pagination>
                 </td>
               </tr>
             </b-tfoot>
@@ -85,22 +85,38 @@
 </template>
 
 <script>
-import {products, paginate} from "@/data/products";
 import ProductRow from "@/views/products/ProductRow";
+import Api, {baseUrl} from "@/api";
 export default {
   components: {ProductRow},
   data () {
     return {
-      currentPage:paginate.current_page,
-      rows: paginate.total,
-      perPage: paginate.per_page,
-      products: products
+      paginate: {
+        currentPage: null,
+        total: null,
+        perPage: null,
+      },
+      products: null
     }
   },
   methods: {
+    async getProducts(page){
+      this.products = null;
+      const url = baseUrl + '/products';
+      const response = await Api.get(url,{
+        params: {
+          page: page
+        }
+      });
+      this.products = response.data.result;
+      this.paginate = response.data.paginate;
+    },
     click(page){
-      console.log(page)
+      this.getProducts(page);
     }
+  },
+  mounted() {
+    this.getProducts();
   }
 }
 </script>

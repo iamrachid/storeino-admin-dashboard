@@ -25,7 +25,7 @@
       <b-tfoot>
         <tr>
           <td colspan="7">
-            <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="right" prev-text="Prev" next-text="Next" @change="click"></b-pagination>
+            <b-pagination v-model="paginate.currentPage" :total-rows="paginate.total" :per-page="paginate.perPage" align="right" prev-text="Prev" next-text="Next" @change="click"></b-pagination>
           </td>
         </tr>
       </b-tfoot>
@@ -37,27 +37,45 @@
 
 <script>
 
-import {categories, paginate} from "@/data/categories";
 import CategoryRow from "@/views/categories/CategoryRow";
+import Api, {baseUrl} from "@/api";
 
 export default {
   name: "Categories",
   components: {CategoryRow},
   data(){
     return {
-      currentPage:paginate.current_page,
-      rows: paginate.total,
-      perPage: paginate.per_page,
-      categories: categories
+      paginate: {
+        currentPage: 1,
+        total: 12,
+        perPage: 10
+      },
+      categories: null,
     }
   },
   methods: {
-    click(page){
-      console.log(page)
+    async getCategories(page){
+      this.categories = null;
+      const url = baseUrl + '/category';
+      const response = await Api.get(url,{
+        params: {
+          page: page,
+          limit: 10
+        }
+      });
+      this.categories = response.data.result;
+      this.paginate = response.data.paginate;
     },
+    click(page){
+      this.getCategories(page)
+    },
+
     deleteCat(slug){
       console.log(slug)
     }
+  },
+  mounted() {
+    this.getCategories()
   }
 }
 </script>

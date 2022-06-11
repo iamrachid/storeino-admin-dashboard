@@ -67,12 +67,19 @@
               </b-tr>
             </b-thead>
             <b-tbody>
-              <order-row  v-for="order in orders" :key="order._id" :order="order"/>
+<!--              <transition :class="{fadeIn: !!orders, fadeOut: !orders}">-->
+                <template v-if="orders.length === 0" >
+                  <order-row-loader/>
+                  <order-row-loader/>
+                  <order-row-loader/>
+                </template>
+<!--              </transition>-->
+              <order-row  v-for="order in orders" :key="order._id" :order="order" class="fadeIn"/>
             </b-tbody>
             <b-tfoot>
             <tr>
               <td colspan="7">
-                <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="right" prev-text="Prev" next-text="Next" @change="click"></b-pagination>
+                <b-pagination v-model="paginate.currentPage" :total-rows="paginate.total" :per-page="paginate.perPage" align="right" prev-text="Prev" next-text="Next" @change="click"></b-pagination>
               </td>
             </tr>
             </b-tfoot>
@@ -86,27 +93,38 @@
 </template>
 
 <script>
-// Chart.js, https://www.chartjs.org
 
-// Line Chart component using Vue Chart.js, for more info and examples you can check out https://github.com/apertureless/vue-chartjs
 import OrderRow from "@/views/orders/OrderRow";
-import {orders} from "@/data/orders";
-import {paginate} from "@/data/products";
+import Api, {baseUrl, customHeader} from "@/api";
+import axios from "axios";
+import OrderRowLoader from "@/views/orders/OrderRowLoader";
 
 export default {
-  components: {OrderRow},
+  components: {OrderRowLoader, OrderRow},
   data () {
     return {
-      currentPage:paginate.current_page,
-      rows: paginate.total,
-      perPage: paginate.per_page,
-      orders: orders
+      paginate: {},
+      orders: []
     }
   },
   methods: {
+    async getOrders(page) {
+      this.orders = null;
+      const url = baseUrl + '/orders';
+      const response = await Api.get(url,{
+        params: {
+          page: page
+        }
+      });
+      this.orders = response.data.result;
+      this.paginate = response.data.paginate;
+    },
     click(page){
-      console.log(page)
+      this.getOrders(page)
     }
+  },
+  mounted() {
+    this.getOrders(1);
   }
 }
 </script>

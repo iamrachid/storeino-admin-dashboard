@@ -19,11 +19,11 @@
       {{ category.children.length }}
     </b-td>
     <b-td class="text-center">
-      <a :href="'categories/' + category._id" class="mx-1">
-        <i class="fa fa-fw fa-pencil-alt" v-b-tooltip.hover.top="'Manage'" ></i>
+      <a :href="'categories/' + category.slug" class="mx-1">
+        <i class="fa fa-fw fa-pencil-alt"></i>
       </a>
-      <b-a href="javascript:void(0)" v-b-tooltip.hover.top ="'Delete'" @click="deleteCat"  class="mx-1">
-        <i class="fa fa-fw fa-trash text-danger"    v-b-tooltip.hover.top ="'Delete'" ></i>
+      <b-a href="javascript:void(0)" @click="deleteCat"  class="mx-1">
+        <i class="fa fa-fw fa-trash text-danger"></i>
       </b-a>
     </b-td>
   </b-tr>

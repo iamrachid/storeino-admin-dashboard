@@ -22,7 +22,7 @@
       {{ order.total }} {{ order.currency}}
     </b-td>
     <b-td class="text-center">
-      <a href="javascript:void(0)" v-b-tooltip.hover.nofade.left="'Manage'">
+      <a href="javascript:void(0)">
         <i class="fa fa-fw fa-pencil-alt"></i>
       </a>
     </b-td>

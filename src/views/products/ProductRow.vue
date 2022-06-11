@@ -16,10 +16,10 @@
       {{ price }} MAD
     </b-td>
     <b-td class="text-center">
-      <a href="javascript:void(0)" v-b-tooltip.hover.left.nofade="'View'" v-b-tooltip:>
+      <a href="javascript:void(0)">
         <i class="fa fa-fw fa-eye mx-1" ></i>
       </a>
-      <a href="javascript:void(0)" v-b-tooltip.hover.nofade.left="'Manage'">
+      <a href="javascript:void(0)">
         <i class="fa fa-fw fa-pencil-alt mx-1"></i>
       </a>
     </b-td>
@@ -38,7 +38,6 @@ export default {
       else {
         const min = this.product.variants.reduce((acc, cur) => (acc < cur.price.salePrice) ? acc : cur.price.salePrice);
         const max = this.product.variants.reduce((acc, cur) => (acc > cur.price.salePrice) ? acc : cur.price.salePrice);
-        console.log(min,max)
         return (min === max) ? min : min + '-' + max;
       }
     },

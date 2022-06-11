@@ -101,7 +101,7 @@
                     <a class="link-fx font-w600" href="javascript:void(0)">{{ customer.orders }}</a>
                   </b-td>
                   <b-td class="text-center">
-                    <a href="javascript:void(0)" v-b-tooltip.hover.nofade.left="'Edit'">
+                    <a href="javascript:void(0)">
                       <i class="fa fa-fw fa-pencil-alt"></i>
                     </a>
                   </b-td>
@@ -145,7 +145,7 @@
                     {{ order.total }}
                   </b-td>
                   <b-td class="text-center">
-                    <a href="javascript:void(0)" v-b-tooltip.hover.nofade.left="'Manage'">
+                    <a href="javascript:void(0)">
                       <i class="fa fa-fw fa-pencil-alt"></i>
                     </a>
                   </b-td>
