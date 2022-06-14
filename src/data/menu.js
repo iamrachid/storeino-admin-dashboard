@@ -5,9 +5,9 @@
 export default {
   'main': [
     {
-      name: 'Dashboard',
-      to: '/admin/dashboard',
-      icon: 'si si-speedometer'
+      name: 'Homepage',
+      to: '/admin/homepage',
+      icon: 'si si-grid'
     },
     {
       name: 'Orders',
@@ -23,11 +23,6 @@ export default {
       name: 'Categories',
       to: '/admin/categories',
       icon: 'si si-tag'
-    },
-    {
-      name: 'Homepage',
-      to: '/admin/homepage',
-      icon: 'si si-grid'
     }
   ]
 }

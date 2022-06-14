@@ -4,7 +4,7 @@
       <a class="font-w600" href="javascript:void(0)">#{{ order.orderId }}</a>
     </b-td>
     <b-td class="d-none d-sm-table-cell">
-      {{ order.createdAt }}
+      {{ date }}
     </b-td>
     <b-td>
       <a class="font-w600" href="javascript:void(0)" v-for="(detail, index) in order.details" :key="detail.product._id+index">
@@ -21,11 +21,6 @@
     <b-td class="d-none d-sm-table-cell text-right">
       {{ order.total }} {{ order.currency}}
     </b-td>
-    <b-td class="text-center">
-      <a href="javascript:void(0)">
-        <i class="fa fa-fw fa-pencil-alt"></i>
-      </a>
-    </b-td>
   </b-tr>
 </template>
 <script>
@@ -35,6 +30,11 @@ export default {
     order: {}
   },
   computed:{
+    date(){
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const date = new Date(this.order.createdAt).toLocaleDateString('en-US',options)
+      return date
+    },
     stateVariant(){
       switch (this.order.status){
         case 'PENDING': return 'warning';

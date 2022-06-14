@@ -11,7 +11,7 @@
       <b-thead>
         <b-tr>
           <b-th class="font-w700 d-none d-sm-table-cell">ID</b-th>
-          <b-th class="d-none d-sm-table-cell font-w700">Image</b-th>
+<!--          <b-th class="d-none d-sm-table-cell font-w700">Image</b-th>-->
           <b-th class="font-w700">Name</b-th>
           <b-th class="font-w700">Slug</b-th>
           <b-th class="font-w700">Level</b-th>
@@ -20,6 +20,11 @@
         </b-tr>
       </b-thead>
       <b-tbody>
+        <template v-if="categories.length === 0" >
+          <row-loader :col="6" />
+          <row-loader :col="6" />
+          <row-loader :col="6" />
+        </template>
         <category-row v-for="item in categories" :key="item._id" :category="item" v-on:deleteCat="deleteCat"/>
       </b-tbody>
       <b-tfoot>
@@ -39,10 +44,12 @@
 
 import CategoryRow from "@/views/categories/CategoryRow";
 import Api, {baseUrl} from "@/api";
+import RowLoader from "@/views/orders/RowLoader";
+import {categories} from "@/data/categories";
 
 export default {
   name: "Categories",
-  components: {CategoryRow},
+  components: {RowLoader, CategoryRow},
   data(){
     return {
       paginate: {
@@ -50,12 +57,12 @@ export default {
         total: 12,
         perPage: 10
       },
-      categories: null,
+      categories: [],
     }
   },
   methods: {
     async getCategories(page){
-      this.categories = null;
+      this.categories = [];
       const url = baseUrl + '/category';
       const response = await Api.get(url,{
         params: {
@@ -71,10 +78,15 @@ export default {
     },
 
     deleteCat(slug){
-      console.log(slug)
+      const url = baseUrl + '/category/' + slug;
+      Api.delete(url).then(() => {
+        this.categories = this.categories.filter(item => item.slug !== slug);
+        if (!this.categories.length)
+          this.getCategories();
+      });
     }
   },
-  mounted() {
+  async mounted() {
     this.getCategories()
   }
 }

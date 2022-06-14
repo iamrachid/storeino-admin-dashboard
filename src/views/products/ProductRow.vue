@@ -10,18 +10,10 @@
       {{product.name.substr(0,50)}}{{product.name.length > 50 ? '...' : ''}}
     </b-td>
     <b-td class="d-none d-sm-table-cell">
-      {{ product.createdAt }}
+      {{ date }}
     </b-td>
     <b-td class="text-right">
       {{ price }} MAD
-    </b-td>
-    <b-td class="text-center">
-      <a href="javascript:void(0)">
-        <i class="fa fa-fw fa-eye mx-1" ></i>
-      </a>
-      <a href="javascript:void(0)">
-        <i class="fa fa-fw fa-pencil-alt mx-1"></i>
-      </a>
     </b-td>
   </b-tr>
 </template>
@@ -32,6 +24,11 @@ export default {
     product: {}
   },
   computed: {
+    date(){
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const date = new Date(this.product.createdAt).toLocaleDateString('en-US',options)
+      return date
+    },
     price() {
       if (this.product.type === 'simple')
         return this.product.price.salePrice;

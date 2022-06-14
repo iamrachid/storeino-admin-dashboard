@@ -2,58 +2,8 @@
   <div>
     <!-- Page Content -->
     <div class="content content-narrow">
-      <!-- Stats -->
-      <b-row>
-        <b-col cols="6" md="3" lg="6" xl="3">
-          <base-block tag="a" rounded link-pop content-full class="border-left border-primary border-4x" href="javascript:void(0)">
-              <div class="font-size-sm font-w600 text-uppercase text-muted">
-                Add product
-              </div>
-              <div class="font-size-h2 font-w400 text-dark">
-                +
-              </div>
-          </base-block>
-        </b-col>
-        <b-col cols="6" md="3" lg="6" xl="3">
-          <base-block tag="a" rounded link-pop content-full class="border-left border-primary border-4x" href="javascript:void(0)">
-              <div class="font-size-sm font-w600 text-uppercase text-muted">
-                Today
-              </div>
-              <div class="font-size-h2 font-w400 text-dark">
-                150
-              </div>
-          </base-block>
-        </b-col>
-        <b-col cols="6" md="3" lg="6" xl="3">
-          <base-block tag="a" rounded link-pop content-full class="border-left border-primary border-4x" href="javascript:void(0)">
-              <div class="font-size-sm font-w600 text-uppercase text-muted">
-                Yesterday
-              </div>
-              <div class="font-size-h2 font-w400 text-dark">
-                3,200
-              </div>
-          </base-block>
-        </b-col>
-        <b-col cols="6" md="3" lg="6" xl="3">
-          <base-block tag="a" rounded link-pop content-full class="border-left border-primary border-4x" href="javascript:void(0)">
-              <div class="font-size-sm font-w600 text-uppercase text-muted">
-                This month
-              </div>
-              <div class="font-size-h2 font-w400 text-dark">
-                21
-              </div>
-          </base-block>
-        </b-col>
-      </b-row>
-      <!-- END Stats -->
-
       <!-- All Orders -->
         <base-block title="All Products" header-bg content-full>
-          <template #options>
-            <button type="button" class="btn-block-option">
-              <i class="si si-settings"></i>
-            </button>
-          </template>
           <b-table-simple striped hover borderless class="table-vcenter font-size-sm mb-0">
             <b-thead>
               <b-tr>
@@ -62,10 +12,14 @@
                 <b-th class="d-none d-sm-table-cell font-w700">Name</b-th>
                 <b-th class="font-w700">Date</b-th>
                 <b-th class="font-w700">Price</b-th>
-                <b-th class="font-w700">Actions</b-th>
               </b-tr>
             </b-thead>
             <b-tbody>
+              <template v-if="products.length === 0">
+                <row-loader :col="5"/>
+                <row-loader :col="5"/>
+                <row-loader :col="5"/>
+              </template>
               <product-row v-for="product in products" :key="product._id" :product="product"/>
             </b-tbody>
             <b-tfoot>
@@ -87,8 +41,9 @@
 <script>
 import ProductRow from "@/views/products/ProductRow";
 import Api, {baseUrl} from "@/api";
+import RowLoader from "@/views/orders/RowLoader";
 export default {
-  components: {ProductRow},
+  components: {RowLoader, ProductRow},
   data () {
     return {
       paginate: {
@@ -96,12 +51,12 @@ export default {
         total: null,
         perPage: null,
       },
-      products: null
+      products: []
     }
   },
   methods: {
     async getProducts(page){
-      this.products = null;
+      this.products = [];
       const url = baseUrl + '/products';
       const response = await Api.get(url,{
         params: {

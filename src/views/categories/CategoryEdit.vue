@@ -8,12 +8,24 @@
         <b-form-group label="Parent" label-for="parent">
           <b-form-select id="parent" v-model="category.parent" :options="options" required plain></b-form-select>
       </b-form-group>
-      <b-form-group label="Banner Image" label-for="banner">
-        <b-form-file id="banner" accept="image/*" plain v-model="banner"></b-form-file>
-      </b-form-group>
-      <base-block>
-        <img class="img-fluid options-item" lazy :src="bannerUrl" alt="Image">
-      </base-block>
+      <b-row>
+        <b-col>
+          <b-form-group label="Banner Image" label-for="banner">
+            <b-form-file id="banner" accept="image/*" plain v-model="banner"></b-form-file>
+          </b-form-group>
+          <base-block v-if="bannerUrl" >
+            <img class="img-fluid options-item" lazy :src="bannerUrl" alt="Image">
+          </base-block>
+        </b-col>
+        <b-col>
+          <b-form-group label="Main Image" label-for="IMAGE">
+            <b-form-file id="IMAGE" accept="image/*" plain v-model="img"></b-form-file>
+          </b-form-group>
+          <base-block v-if="imgUrl">
+            <img class="img-fluid options-item" lazy :src="imgUrl" alt="Image">
+          </base-block>
+        </b-col>
+      </b-row>
       <button class="btn btn-alt-primary d-flex align-items-center" :disabled="loading">Update
         <div class="spinner-border text-light ml-3"  style="width: 1rem; height: 1rem;" v-if="loading" />
       </button>
@@ -34,6 +46,7 @@
 <script>
 
 import Api, {baseUrl} from "@/api";
+import login from "@/views/Login";
 export default {
   name: "CategoryEdit",
   data(){
@@ -44,9 +57,12 @@ export default {
       category: {
         parent: null,
         name: null,
-        banner: null
+        banner: null,
+        img: null
       },
       banner: null,
+      img: null,
+      imgUrl: '',
       bannerUrl: ''
     }
   },
@@ -75,6 +91,16 @@ export default {
       if (old)
         reader.readAsDataURL(old);
     },
+
+    img(old){
+      console.log(old)
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        this.category.img = reader.result;
+      }
+      if (old)
+        reader.readAsDataURL(old);
+    },
   },
   async mounted() {
     await this.getCategories();
@@ -85,14 +111,15 @@ export default {
       const url = baseUrl + '/category/' + this.$route.params.slug;
       this.loading = true;
       console.log(this.category)
-      const response = await Api.patch(url, {
+      Api.patch(url, {
         ...this.category,
-      });
-        this.loading = false;
-        this.alert = true;
-      setTimeout(() => {
-        this.alert = false;
-      }, 3000)
+      }).then(() => {
+          this.loading = false;
+          this.alert = true;
+        setTimeout(() => {
+          this.alert = false;
+        }, 3000)
+      }).catch(err => console.log(err))
     },
     async getCategories() {
       const url = baseUrl + '/category';
@@ -108,6 +135,7 @@ export default {
       const response = await Api.get(url);
       const category = response.data.result;
       this.bannerUrl = category.banner;
+      this.imgUrl = category.img;
       this.category.name = category.name;
       this.category.parent = category.level === 0 ? category.slug : category.slug.split(':').slice(0, -1).join(':');
     }

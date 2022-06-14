@@ -24,19 +24,24 @@
                   <div class="form-group">
                     <b-form-input size="lg" class="form-control-alt" id="username" name="username" placeholder="Username" v-model="$v.form.username.$model" :state="!$v.form.username.$error && null" aria-describedby="username-feedback"></b-form-input>
                     <b-form-invalid-feedback id="username-feedback">
-                      Please enter your username
+                      Username is at least 3 characters long
                     </b-form-invalid-feedback>
                   </div>
                   <div class="form-group">
                     <b-form-input type="password" size="lg" class="form-control-alt" id="password" name="password" placeholder="Password" v-model="$v.form.password.$model" :state="!$v.form.password.$error && null" aria-describedby="password-feedback"></b-form-input>
                     <b-form-invalid-feedback id="password-feedback">
-                      Please enter your password
+                      Password is at least 5 characters long
                     </b-form-invalid-feedback>
                   </div>
-                  <div class="form-group">
-                    <b-form-checkbox id="remember" name="remember">Remember Me</b-form-checkbox>
-                  </div>
                 </div>
+                <b-alert variant="danger" class="animated d-flex align-items-center mt-5" :class="{fadeIn: alert, fadeOut: !alert}" :show="alert">
+                  <div class="flex-00-auto">
+                    <i class="fa fa-fw fa-times-circle"></i>
+                  </div>
+                  <div class="flex-fill ml-2">
+                    <p class="mb-0">Incorrect username or password </p>
+                  </div>
+                </b-alert>
                 <b-row class="form-group">
                   <b-col md="6" xl="5">
                     <b-button type="submit" variant="alt-primary" block>
@@ -63,6 +68,7 @@
 // Vuelidate, for more info and examples you can check out https://github.com/vuelidate/vuelidate
 import { validationMixin } from 'vuelidate'
 import { required, minLength } from 'vuelidate/lib/validators'
+import Api, {baseUrl} from "@/api";
 
 export default {
   mixins: [validationMixin],
@@ -71,14 +77,16 @@ export default {
       form: {
         username: null,
         password: null
-      }
+      },
+      alert: false
     }
   },
   validations: {
     form: {
       username: {
         required,
-        minLength: minLength(3)
+        minLength: minLength(3),
+
       },
       password: {
         required,
@@ -95,7 +103,21 @@ export default {
       }
 
       // Form submit logic
-      this.$router.push('/admin')
+      const url = baseUrl + '/auth/login';
+
+      Api.post(url, {
+        ...this.form,
+      }).then((res) => {
+        if (res.status !== 200)
+          return;
+        localStorage.user = JSON.stringify({
+          username: this.form.username,
+          token: res.data.token
+        });
+        this.$router.push('/admin')
+      }).catch(err => {
+          this.alert = true;
+      });
     }
   }
 }

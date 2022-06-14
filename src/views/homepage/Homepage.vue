@@ -9,25 +9,27 @@
 
       <!-- Hero Slider -->
       <base-block title="Hero Slider" content-full>
-        <b-tabs class="block" nav-class="nav-tabs-alt" content-class="block-content">
-          <b-tab v-for="item in slides" :key="item._id" :title="'Slide ' + item._id" active>
-            <slide-form :slide="item"/>
-          </b-tab>
-        </b-tabs>
+        <slider-tabs/>
       </base-block>
       <!-- END Hero Slider -->
 
       <!-- Hero Banner -->
       <base-block title="Hero Banner" content-full>
-        <banner-form :banner="banner"/>
+        <banner-form/>
       </base-block>
       <!-- END Hero Banner -->
 
       <!-- Top Categories -->
       <base-block title="Top Categories" content-full>
-        <categories-form :categories="categories"/>
+        <categories-form type="top" :max="3" :min="3"/>
       </base-block>
       <!-- END Top Categories -->
+
+      <!-- Featured Categories -->
+      <base-block title="Featured Categories" content-full>
+        <categories-form type="featured"/>
+      </base-block>
+      <!-- END Featured Categories -->
 
     </div>
     <!-- END Page Content -->
@@ -35,20 +37,15 @@
 </template>
 
 <script>
-import {banner, slides} from "@/data/custumazation";
-import SlideForm from "@/views/homepage/SlideForm";
 import BannerForm from "@/views/homepage/BannerForm";
-import {categories} from "@/data/categories";
 import CategoriesForm from "@/views/homepage/CategoriesForm";
+import SliderTabs from "@/views/homepage/SliderTabs";
 
 export default {
   name: 'Homepage',
-  components: {CategoriesForm, BannerForm, SlideForm},
+  components: {SliderTabs, CategoriesForm, BannerForm},
   data () {
     return {
-      slides: slides,
-      banner: banner,
-      categories: categories.filter(item => item.level === 0 || item.level === 1)
     }
   }
 }

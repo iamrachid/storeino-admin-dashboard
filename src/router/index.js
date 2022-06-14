@@ -7,7 +7,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // Main layout
-import Dashboard from "@/views/Dashboard";
 import LayoutBackend from "@/layouts/Backend";
 import Orders from "@/views/orders/Orders";
 import Products from "@/views/products/Products";
@@ -25,7 +24,7 @@ import Login from "@/views/Login";
 Vue.use(Router)
 
 // Router Configuration
-export default new Router({
+const router = new Router({
   mode: 'history',
   linkActiveClass: 'active',
   linkExactActiveClass: '',
@@ -36,23 +35,18 @@ export default new Router({
     {
     path: '',
       component: EmptyComponent,
-      redirect: '/admin/dashboard',
+      redirect: '/admin/homepage',
       children: [
         {
+          name: 'login',
           path: 'login',
-          name: 'Dashboard',
           component: Login
         },
         {
           path: '/admin',
-          redirect: '/admin/dashboard',
+          redirect: '/admin/homepage',
           component: LayoutBackend,
           children: [
-            {
-              path: 'dashboard',
-              name: 'Dashboard',
-              component: Dashboard
-            },
             {
               path: 'account',
               name: 'Account',
@@ -76,10 +70,10 @@ export default new Router({
             },
             {
               path: 'categories',
-              name: 'Categories',
               component: EmptyComponent,
               children: [
                 {
+                  name: 'Categories',
                   path: '/',
                   component: Categories,
                 },
@@ -99,4 +93,15 @@ export default new Router({
       ]
     }
   ]
-})
+});
+
+router.beforeEach(async (to,from, next) => {
+  if (!localStorage.getItem('user') && to.name !== 'login') {
+    next({name: 'login'});
+  }
+  else {
+    next()
+  }
+});
+
+export default router;

@@ -27,7 +27,6 @@ export default new Vuex.Store({
       version: process.env.PACKAGE_VERSION,
       copyright: helpers.getCurrentYear()
     },
-
     // Default layout options
     layout: {
       header: true,

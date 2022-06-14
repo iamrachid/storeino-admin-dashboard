@@ -26,7 +26,7 @@
           <b-dropdown size="sm" variant="dual" class="d-inline-block ml-2" menu-class="p-0 border-0 font-size-sm" right no-caret>
             <template #button-content>
               <img class="rounded" src="/img/avatars/avatar1.jpg" alt="Header Avatar" style="width: 18px;">
-              <span class="d-none d-sm-inline-block ml-1">Adam</span>
+              <span class="d-none d-sm-inline-block ml-1">{{username}}</span>
               <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
             </template>
             <li>
@@ -34,14 +34,14 @@
                 <img class="img-avatar img-avatar48 img-avatar-thumb" src="/img/avatars/avatar10.jpg  " alt="Avatar">
               </div>
               <div class="p-2">
-                <router-link class="dropdown-item d-flex align-items-center justify-content-between" to="account">
-                  <span>Account</span>
-                  <i class="si si-settings ml-1"></i>
-                </router-link>
-                <router-link class="dropdown-item d-flex align-items-center justify-content-between" to="/login">
+<!--                <router-link class="dropdown-item d-flex align-items-center justify-content-between" to="account">-->
+<!--                  <span>Account</span>-->
+<!--                  <i class="si si-settings ml-1"></i>-->
+<!--                </router-link>-->
+                <button class="dropdown-item d-flex align-items-center justify-content-between" @click="logout">
                   <span>Log Out</span>
                   <i class="si si-logout ml-1"></i>
-                </router-link>
+                </button>
               </div>
             </li>
           </b-dropdown>
@@ -50,23 +50,6 @@
         <!-- END Right Section -->
       </div>
       <!-- END Header Content -->
-
-      <!-- Header Search -->
-      <div id="page-header-search" class="overlay-header bg-white" :class="{ 'show': $store.state.settings.headerSearch }" @keydown.esc="() => $store.commit('headerSearch', { mode: 'off' })">
-        <div class="content-header">
-          <b-form @submit.stop.prevent="onSubmit" class="w-100">
-            <b-input-group size="sm">
-              <b-input-group-prepend>
-                <base-layout-modifier action="headerSearchOff" variant="danger">
-                  <i class="fa fa-fw fa-times-circle"></i>
-                </base-layout-modifier>
-              </b-input-group-prepend>
-              <b-form-input placeholder="Search or hit ESC.." v-model="baseSearchTerm"></b-form-input>
-            </b-input-group>
-          </b-form>
-        </div>
-      </div>
-      <!-- END Header Search -->
 
       <!-- Header Loader -->
       <div id="page-header-loader" class="overlay-header bg-white" :class="{ 'show': $store.state.settings.headerLoader }">
@@ -88,59 +71,24 @@ export default {
   props: {
     classes: String
   },
-  data () {
-    return {
-      baseSearchTerm: '',
-      notifications: [
-        {
-          href: 'javascript:void(0)',
-          icon: 'fa fa-fw fa-check-circle text-success',
-          title: 'You have a new follower',
-          time: '15 min ago'
-        },
-        {
-          href: 'javascript:void(0)',
-          icon: 'fa fa-fw fa-plus-circle text-info',
-          title: '1 new sale, keep it up',
-          time: '22 min ago'
-        },
-        {
-          href: 'javascript:void(0)',
-          icon: 'fa fa-fw fa-times-circle text-danger',
-          title: 'Update failed, restart server',
-          time: '15 min ago'
-        },
-        {
-          href: 'javascript:void(0)',
-          icon: 'fa fa-fw fa-plus-circle text-info',
-          title: '2 new sales, keep it up',
-          time: '33 min ago'
-        },
-        {
-          href: 'javascript:void(0)',
-          icon: 'fa fa-fw fa-user-plus text-success',
-          title: 'You have a new subscriber',
-          time: '41 min ago'
-        },
-        {
-          href: 'javascript:void(0)',
-          icon: 'fa fa-fw fa-check-circle text-success',
-          title: 'You have a new follower',
-          time: '42 min ago'
-        }
-      ]
+
+  computed: {
+    username(){
+      const user = JSON.parse(localStorage.getItem('user'));
+      return user.username;
     }
   },
   methods: {
-    onSubmit () {
-      this.$router.push('/backend/pages/generic/search?' + this.baseSearchTerm)
-    },
     eventHeaderSearch (event) {
       // When ESCAPE key is hit close the header search section
       if (event.which === 27) {
         event.preventDefault()
         this.$store.commit('headerSearch', { mode: 'off' })
       }
+    },
+    logout(){
+      localStorage.removeItem('user');
+      this.$router.push({name: 'login'})
     }
   },
   mounted () {
