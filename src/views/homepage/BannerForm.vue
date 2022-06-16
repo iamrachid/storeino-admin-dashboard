@@ -12,8 +12,8 @@
     <b-form-group label-cols-sm="3" content-cols-sm="5" label="Call to action" label-for="cta">
       <b-form-input id="cta" v-model="banner.cta"></b-form-input>
     </b-form-group>
-    <b-form-group label-cols-sm="3" content-cols-sm="5" label="Image" label-for="image">
-      <b-form-file v-model="img" id="image"></b-form-file>
+    <b-form-group label-cols-sm="3" content-cols-sm="5" label="Image" label-for="banner-image">
+      <b-form-file v-model="img" id="banner-image"></b-form-file>
     </b-form-group>
     <b-btn class="btn-alt-primary btn" :disabled="loading" @click="editBanner">Apply changes
       <div class="spinner-border text-light ml-3" style="width: 1rem; height: 1rem;" v-if="loading"/>
