@@ -36,7 +36,7 @@
         <i class="fa fa-fw fa-check"></i>
       </div>
       <div class="flex-fill ml-2">
-        <p class="mb-0 text-capitalize">Banner updated successfully</p>
+        <p class="mb-0 text-capitalize">Slide updated successfully</p>
       </div>
     </b-alert>
   </b-form>

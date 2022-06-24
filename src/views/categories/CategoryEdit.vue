@@ -19,7 +19,7 @@
         </b-col>
         <b-col>
           <b-form-group label="Main Image" label-for="IMAGE">
-            <b-form-file id="IMAGE" accept="image/*" plain v-model="img"></b-form-file>
+            <b-form-file id="img" accept="image/*" plain v-model="img"></b-form-file>
           </b-form-group>
           <base-block v-if="imgUrl">
             <img class="img-fluid options-item" lazy :src="imgUrl" alt="Image">

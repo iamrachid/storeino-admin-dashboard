@@ -4,7 +4,7 @@
       <multiselect :options="categories"
                    placeholder="Search category"
                    v-model="selectedCategories"
-                   label="name" track-by="slug"
+                   label="slug" track-by="slug"
                    :multiple="true"
                    :taggable="true"
                    :max="max"
